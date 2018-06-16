@@ -1,4 +1,4 @@
-package com.shorka.telegramclone_ui;
+package com.shorka.telegramclone_ui.activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +19,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+
+import com.shorka.telegramclone_ui.ComplexRecyclerViewAdapter;
+import com.shorka.telegramclone_ui.DividerCustomItemDecoration;
+import com.shorka.telegramclone_ui.HeaderView;
+import com.shorka.telegramclone_ui.ProfilePicDialogFragment;
+import com.shorka.telegramclone_ui.R;
+import com.shorka.telegramclone_ui.SettingsTextEntity;
 
 import java.util.ArrayList;
 
