@@ -28,4 +28,6 @@
     <dimen name="recycle_item_one_line">45dp</dimen>
     <dimen name="recycle_top_margin">45dp</dimen>
 
+    <dimen name="message_image_preview_scale">56dp</dimen>
+
 </resources>

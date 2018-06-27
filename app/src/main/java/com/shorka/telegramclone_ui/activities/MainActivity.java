@@ -5,7 +5,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,10 +20,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
+import com.shorka.telegramclone_ui.DividerCustomItemDecoration;
+import com.shorka.telegramclone_ui.DividerCustomPaddingItemDecoration;
 import com.shorka.telegramclone_ui.R;
+import com.shorka.telegramclone_ui.RecyclerItemClickListener;
+import com.shorka.telegramclone_ui.Utils;
+import com.shorka.telegramclone_ui.adapter.MessagesGridRecycleViewAdapter;
+import com.shorka.telegramclone_ui.entities.MessagePreviewEntity;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -27,6 +41,9 @@ public class MainActivity extends AppCompatActivity
 
     private static final String TAG = "MainActivity";
     private Context mContext = MainActivity.this;
+    private RecyclerView mRecycleView;
+    private RecyclerView.Adapter mAdapter;
+    private FloatingActionButton fab;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -36,14 +53,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.main_write_fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        fab = (FloatingActionButton) findViewById(R.id.main_write_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,7 +92,7 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
-
+        initContentMain();
     }
 
     @Override
@@ -132,5 +148,141 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(mContext, SettingsActivity.class));
         }
         return true;
+    }
+
+
+    private void initContentMain() {
+
+        mRecycleView = findViewById(R.id.recycler_view_messages);
+        mRecycleView.setAdapter(new MessagesGridRecycleViewAdapter(mContext, getInfoArrayList()));
+        mRecycleView.setLayoutManager(new LinearLayoutManager(mContext));
+        mRecycleView.setNestedScrollingEnabled(false);
+
+
+        DividerCustomPaddingItemDecoration itemCustomDecor = new DividerCustomPaddingItemDecoration(mContext,
+                DividerItemDecoration.VERTICAL,
+                Utils.dpToPx(getResources().getDimension(R.dimen.message_image_preview_scale),mContext) -
+                        Utils.dpToPx(9,mContext)
+                );
+        mRecycleView.addItemDecoration(itemCustomDecor);
+
+        mRecycleView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+                if(dy<=0){
+                    fab.show();
+                }
+                else {
+                    fab.hide();
+                }
+            }
+        });
+
+        mRecycleView.addOnItemTouchListener(new RecyclerItemClickListener(mContext, mRecycleView, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Log.d(TAG, "onItemClick: click on pos: " + position + "_  " +view.getId());
+
+            }
+
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        }));
+
+
+    }
+
+    private ArrayList<MessagePreviewEntity> getInfoArrayList() {
+        ArrayList<MessagePreviewEntity> items = new ArrayList<>();
+
+        MessagePreviewEntity entity1 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Bob")
+                .withLastMessage("Are you even lifting, bro?")
+                .withIsPinned(false)
+                .withIsReaded(true)
+                .withDate("12:43")
+                .withImageResId(R.drawable.kochek_withback)
+                .buildMesagePreview();
+
+        items.add(entity1);
+
+        MessagePreviewEntity entity2 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Alex")
+                .withLastMessage("Okay")
+                .withIsPinned(true)
+                .withIsReaded(true)
+                .withDate("8:00")
+                .withImageResId(R.drawable.avatar4)
+                .buildMesagePreview();
+
+        items.add(entity2);
+
+        MessagePreviewEntity entity3 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Ivan")
+                .withLastMessage("see you there")
+                .withIsPinned(false)
+                .withIsReaded(true)
+                .withDate("14:25")
+                .withImageResId(R.drawable.avatar2)
+                .buildMesagePreview();
+
+
+        items.add(entity3);
+
+        MessagePreviewEntity entity4 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Pavel Durov")
+                .withLastMessage("Do you know where is my keys?")
+                .withIsPinned(false)
+                .withIsReaded(false)
+                .withDate("18:15")
+                .withImageResId(R.drawable.avatar_durov)
+                .buildMesagePreview();
+        items.add(entity4);
+
+        MessagePreviewEntity entity5 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Lisa S")
+                .withLastMessage("sup")
+                .withIsPinned(false)
+                .withIsReaded(false)
+                .withDate("23:05")
+                .withImageResId(R.drawable.avatar_lisa)
+                .buildMesagePreview();
+        items.add(entity5);
+
+        MessagePreviewEntity entity6 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Mr. Heisenber")
+                .withLastMessage("Dont skip my classes anymore")
+                .withIsPinned(false)
+                .withIsReaded(false)
+                .withDate("13:05")
+                .withImageResId(R.drawable.avatar_heisenberg)
+                .buildMesagePreview();
+        items.add(entity6);
+
+        MessagePreviewEntity entity7 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Jack Uni")
+                .withLastMessage("I need to think about this more carefully. See you")
+                .withIsPinned(false)
+                .withIsReaded(false)
+                .withDate("13:05")
+                .withImageResId(R.drawable.profile_default_male)
+                .buildMesagePreview();
+        items.add(entity7);
+
+
+        MessagePreviewEntity entity8 = new MessagePreviewEntity.MessagePreviewBuilder()
+                .withContactName("Anna Smith")
+                .withLastMessage("Really?")
+                .withIsPinned(false)
+                .withIsReaded(false)
+                .withDate("Jun 2")
+                .withImageResId(R.drawable.avatar3_female)
+                .buildMesagePreview();
+        items.add(entity8);
+
+        return items;
     }
 }

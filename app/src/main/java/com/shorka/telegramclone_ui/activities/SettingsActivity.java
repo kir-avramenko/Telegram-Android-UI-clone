@@ -20,12 +20,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import com.shorka.telegramclone_ui.ComplexRecyclerViewAdapter;
+import com.shorka.telegramclone_ui.adapter.ComplexRecyclerViewAdapter;
 import com.shorka.telegramclone_ui.DividerCustomItemDecoration;
 import com.shorka.telegramclone_ui.HeaderView;
 import com.shorka.telegramclone_ui.ProfilePicDialogFragment;
 import com.shorka.telegramclone_ui.R;
-import com.shorka.telegramclone_ui.SettingsTextEntity;
+import com.shorka.telegramclone_ui.entities.SettingsTextEntity;
 
 import java.util.ArrayList;
 
