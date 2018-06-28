@@ -30,4 +30,7 @@
 
     <dimen name="message_image_preview_scale">56dp</dimen>
 
+
+    <dimen name="convo_edittext_scale">46dp</dimen>
+
 </resources>

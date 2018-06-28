@@ -21,8 +21,11 @@
         </activity>
 
         <activity android:name=".activities.SettingsActivity" />
-        <activity android:name=".activities.ContactChatActivity" />
+        <activity
+            android:name=".activities.ContactChatActivity"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
 
     </application>
+
 
 </manifest>

@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/colorBackGray"
+
+    android:fitsSystemWindows="true">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/convo_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        app:layout_collapseMode="pin"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentTop="true"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <include
-            android:id="@+id/header_view_top"
+            android:id="@+id/convo_header_view_top"
             layout="@layout/widget_header_view_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -21,6 +24,28 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <EditText
+        android:id="@+id/convo_message_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/convo_edittext_scale"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/colorWhite"
+        android:ems="10"
+        android:hint="Message"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
 
+        android:textCursorDrawable="@color/colorPrimary" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="2dp"
+        android:background="@null"
+        android:src="@drawable/ic_attach" />
 
 </RelativeLayout>

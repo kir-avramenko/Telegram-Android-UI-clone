@@ -24,7 +24,6 @@ import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ToggleButton;
 
-import com.shorka.telegramclone_ui.DividerCustomItemDecoration;
 import com.shorka.telegramclone_ui.DividerCustomPaddingItemDecoration;
 import com.shorka.telegramclone_ui.R;
 import com.shorka.telegramclone_ui.RecyclerItemClickListener;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final String TAG = "MainActivity";
-    private Context mContext = MainActivity.this;
+    private final Context mContext = MainActivity.this;
     private RecyclerView mRecycleView;
     private RecyclerView.Adapter mAdapter;
     private FloatingActionButton fab;
@@ -93,6 +92,8 @@ public class MainActivity extends AppCompatActivity
             }
         });
         initContentMain();
+
+//        AppDatabase db = App.getInstance().getDatabase();
     }
 
     @Override
@@ -183,7 +184,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "onItemClick: click on pos: " + position + "_  " +view.getId());
-
+                startActivity(new Intent(mContext, ContactChatActivity.class));
             }
 
             @Override

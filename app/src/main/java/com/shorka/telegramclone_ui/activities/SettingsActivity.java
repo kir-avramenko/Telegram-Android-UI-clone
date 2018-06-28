@@ -49,10 +49,10 @@ public class SettingsActivity extends AppCompatActivity  implements AppBarLayout
 
         toolbarHeaderView = findViewById(R.id.header_view_top);
         floatHeaderView = findViewById(R.id.float_header_view);
-
+//
         toolbarHeaderView.setTxtName((TextView) toolbarHeaderView.findViewById(R.id.name));
         toolbarHeaderView.setTxtLastSeen((TextView) toolbarHeaderView.findViewById(R.id.last_seen));
-
+//
         floatHeaderView.setTxtName((TextView) floatHeaderView.findViewById(R.id.name_float));
         floatHeaderView.setTxtLastSeen((TextView) floatHeaderView.findViewById(R.id.last_seen_float));
 
@@ -92,9 +92,6 @@ public class SettingsActivity extends AppCompatActivity  implements AppBarLayout
         if (percentage == 1f && isHideToolbarView) {
             toolbarHeaderView.setVisibility(View.VISIBLE);
             CoordinatorLayout.LayoutParams lpFloat = (CoordinatorLayout.LayoutParams) floatHeaderView.getLayoutParams();
-//            CoordinatorLayout.LayoutParams lpHead = (CoordinatorLayout.LayoutParams) toolbarHeaderView.getLayoutParams();
-
-//            lpHead.leftMargin = lpFloat.leftMargin;
 
             isHideToolbarView = !isHideToolbarView;
 
