@@ -21,6 +21,10 @@ android {
         }
     }
 
+    dataBinding {
+        enabled = true
+    }
+
     if (project.hasProperty('devBuild')) {
         splits.abi.enable = false;
         splits.density.enable = false;

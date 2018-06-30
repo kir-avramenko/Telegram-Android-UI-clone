@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackGray"
-
     android:fitsSystemWindows="true">
 
     <android.support.v7.widget.Toolbar
@@ -24,28 +23,20 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <EditText
-        android:id="@+id/convo_message_edittext"
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/convo_recycler_view_messages"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/convo_edittext_scale"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:background="@color/colorWhite"
-        android:ems="10"
-        android:hint="Message"
-        android:paddingEnd="30dp"
-        android:paddingStart="30dp"
+        android:layout_height="402dp"
+        android:layout_below="@id/convo_toolbar"
+        android:fitsSystemWindows="true" />
 
-        android:textCursorDrawable="@color/colorPrimary" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/snippet_edit_text_box"
+        layout="@layout/layout_chat_edit_box"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="3dp"
-        android:layout_marginEnd="2dp"
-        android:background="@null"
-        android:src="@drawable/ic_attach" />
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

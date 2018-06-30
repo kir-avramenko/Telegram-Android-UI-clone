@@ -42,6 +42,11 @@ public class SettingsActivity extends AppCompatActivity  implements AppBarLayout
     protected Toolbar toolbar;
     private boolean isHideToolbarView = false;
 
+    public static void open(Context context){
+        context.startActivity(new Intent(context, SettingsActivity.class));
+    }
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -159,7 +164,7 @@ public class SettingsActivity extends AppCompatActivity  implements AppBarLayout
         recyclerView.setAdapter(new ComplexRecyclerViewAdapter(list));
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setNestedScrollingEnabled(false);
-
+        recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(itemDecor);
     }
 

@@ -32,5 +32,6 @@
 
 
     <dimen name="convo_edittext_scale">46dp</dimen>
+    <dimen name="convo_btn_in_edittext_scale">24dp</dimen>
 
 </resources>

@@ -146,7 +146,8 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, "onNavigationItemSelected: press nav_settings");
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
-            startActivity(new Intent(mContext, SettingsActivity.class));
+//            startActivity(new Intent(mContext, SettingsActivity.class));
+            SettingsActivity.open(mContext);
         }
         return true;
     }
@@ -184,7 +185,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onItemClick(View view, int position) {
                 Log.d(TAG, "onItemClick: click on pos: " + position + "_  " +view.getId());
-                startActivity(new Intent(mContext, ContactChatActivity.class));
+                ContactChatActivity.open(mContext);
             }
 
             @Override
