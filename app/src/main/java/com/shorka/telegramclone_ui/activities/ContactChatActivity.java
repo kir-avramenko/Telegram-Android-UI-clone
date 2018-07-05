@@ -30,16 +30,20 @@ import java.util.List;
  */
 public class ContactChatActivity extends AppCompatActivity {
 
+
+    //region properties
     private final Context mContext = ContactChatActivity.this;
     private static final String TAG = "ContactChatActivity";
 
     private TextView mTxtChatPersonName, mTxtLastSeen;
     private ImageButton mBtnAttachments, mBtnSend;
+    private EditText mEditText;
     private RecyclerView mRecyclerView;
     private MessageListAdapter mAdapter;
     private View mViewEditTextBox;
     private CharSequence mMessage;
     private ArrayList<Message> mListMessages;
+    //endregion
 
     public static void open(Context context) {
         context.startActivity(new Intent(context, ContactChatActivity.class));
@@ -62,6 +66,7 @@ public class ContactChatActivity extends AppCompatActivity {
         return true;
     }
 
+    private LinearLayoutManager mLinearLayoutManager;
     private void init() {
         Toolbar toolbar = findViewById(R.id.convo_toolbar);
         View viewConvoTop = findViewById(R.id.convo_header_view_top);
@@ -99,13 +104,17 @@ public class ContactChatActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.convo_recycler_view_messages);
         mAdapter = new MessageListAdapter(mContext, mListMessages);
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mLinearLayoutManager = new LinearLayoutManager(this);
+//        mLinearLayoutManager.setStackFromEnd(true);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+
+
     }
 
     private void initEditText() {
-        final EditText editText = mViewEditTextBox.findViewById(R.id.convo_message_edittext);
+        mEditText = mViewEditTextBox.findViewById(R.id.convo_message_edittext);
 
-        editText.addTextChangedListener(new TextWatcher() {
+        mEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -124,10 +133,10 @@ public class ContactChatActivity extends AppCompatActivity {
                     enableBtnSend(false);
                 }
 
-                if (editText.toString().contains("\n")) {
+                if (mEditText.toString().contains("\n")) {
                     Log.d(TAG, "onTextChanged: MAKE SPACEm");
                 }
-
+                mRecyclerView.scrollToPosition(mRecyclerView.getAdapter().getItemCount()-1);
                 mMessage = s;
             }
 
@@ -141,6 +150,7 @@ public class ContactChatActivity extends AppCompatActivity {
 
         mBtnSend.setVisibility(doEnable ? View.VISIBLE : View.GONE);
         mBtnAttachments.setVisibility(doEnable ? View.GONE : View.VISIBLE);
+//        mRecyclerView.
     }
 
     private void setDefaultMessages() {
@@ -150,13 +160,18 @@ public class ContactChatActivity extends AppCompatActivity {
 
         mListMessages.add(new Message("How are you?", null, 123));
         mListMessages.add(new Message("fam", null, 1233));
+        mListMessages.add(new Message("щас 70 проц от клона телеграма сделал (без сервера)," +
+                " мне еще сделать норм прилогу щас и можно слать.", null, 1233));
+        mListMessages.add(new Message("много букв \n тут и \n вот тут", null, 1233));
+        mListMessages.add(new Message("another row \n stuff like that", null, 1233));
     }
 
     private void sendMessages() {
 
         mListMessages.add(new Message(String.valueOf(mMessage), null, 12));
         mAdapter.notifyItemInserted(mListMessages.size() - 1);
-
+        mEditText.getText().clear();
+//        mRecyclerView.scrollToPosition(mRecyclerView.getAdapter().getItemCount()-1);
     }
 
 }
