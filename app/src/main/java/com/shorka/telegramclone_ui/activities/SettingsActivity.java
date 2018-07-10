@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity  implements AppBarLayout
         floatHeaderView.setTxtName((TextView) floatHeaderView.findViewById(R.id.name_float));
         floatHeaderView.setTxtLastSeen((TextView) floatHeaderView.findViewById(R.id.last_seen_float));
 
-        appBarLayout = findViewById(R.id.settings_appbar);
+        appBarLayout = findViewById(R.id.appbar_test);
         toolbar = findViewById(R.id.toolbar);
 
         setSupportActionBar(toolbar);

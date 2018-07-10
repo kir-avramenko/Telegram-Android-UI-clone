@@ -23,7 +23,7 @@ public class ViewReceiveMessage extends RecyclerView.ViewHolder {
 
     void bind(Message message){
 
-        mTxtMessageBody.setText(message.getMessage());
-        mTxtTime.setText((int) message.getCreatedAt());
+//        mTxtMessageBody.setText(message.getMessage());
+//        mTxtTime.setText((int) message.getCreatedAt());
     }
 }

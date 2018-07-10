@@ -13,7 +13,7 @@
         android:fitsSystemWindows="true">
 
         <android.support.design.widget.AppBarLayout
-            android:id="@+id/settings_appbar"
+            android:id="@+id/appbar_test"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fitsSystemWindows="true"
@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_menu_camera"
-            app:layout_anchor="@id/settings_appbar"
+            app:layout_anchor="@id/appbar_test"
 
             app:layout_anchorGravity="bottom|right|end" />
 

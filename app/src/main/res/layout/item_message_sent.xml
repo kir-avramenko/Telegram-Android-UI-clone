@@ -6,7 +6,6 @@
     android:id="@+id/constaint_receive_message"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorBackGray"
     android:paddingEnd="6dp"
     android:paddingStart="12dp"
     android:paddingTop="8dp">
@@ -20,20 +19,22 @@
         android:gravity="center_vertical"
         android:minWidth="80dp"
         android:padding="8dp"
-        android:text="бля уже курсить хочу"
+        android:text="How are you doing?             "
         android:textColor="@android:color/black"
         android:textDirection="ltr"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.933"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/text_sent_message_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
-        android:layout_marginEnd="26dp"
+        android:layout_marginEnd="22dp"
         android:text="11:40"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"

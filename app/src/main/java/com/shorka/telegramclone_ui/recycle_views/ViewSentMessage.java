@@ -31,7 +31,6 @@ public class ViewSentMessage  extends RecyclerView.ViewHolder  {
         mTxtMessageBody.setText(message.getMessage() + Utils.SPACES_15);
 //        mTxtTime.setText(message.getCreatedAt());
 
-//        mTxtMessageBody.setText("My text");
         mTxtTime.setText("14:48");
     }
 
